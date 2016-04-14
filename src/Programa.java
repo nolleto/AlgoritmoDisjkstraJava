@@ -26,7 +26,6 @@ public class Programa {
 				new Vizinho(v1, 1),
 				new Vizinho(v3, 1)
 		});
-		
 		v3.AddVizinhos(new Vizinho[] {
 				new Vizinho(v0, 1)
 		});
