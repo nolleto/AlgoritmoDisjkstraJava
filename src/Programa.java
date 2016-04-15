@@ -14,7 +14,6 @@ public class Programa {
 		Nodo v6 = new Nodo(6);
 		Nodo v7 = new Nodo(7);
 		
-		
 		v0.AddVizinhos(new Vizinho[] {
 				new Vizinho(v5, 1),
 				new Vizinho(v2, 1)
@@ -63,7 +62,6 @@ public class Programa {
 		int count = nodos.length;
 		for (Nodo nodo : nodos) {
 			ArrayList<Integer> analisados = new ArrayList<Integer>();
-			//HashMap<Integer, Integer> dist = nodo.CompletarDistancias(count);
 			int[] dist = GerarDistancias(count);
 			
 			dist[nodo.id] = 0;
@@ -85,18 +83,19 @@ public class Programa {
 	private static void Analise(Nodo[] nodos, Nodo nodo, int[] dist, ArrayList<Integer> analisados, int acumulador) {
 		DistVizinhos(nodo, dist, acumulador);
 		int menor = MenorIndex(dist, analisados);
+		int d = dist[menor];
 		analisados.add(menor);
 		
 		if (nodos.length > analisados.size()) {
-			Analise(nodos, nodos[menor], dist, analisados, acumulador + 1);
+			Analise(nodos, nodos[menor], dist, analisados, d);
 		}
 	}
 	
 	private static void DistVizinhos(Nodo nodo, int[] dist, int acumulador){
 		for (Vizinho v : nodo.vizinhos) {
-			//nodo.IdDistancias.put(v.nodo.id, v.distancia);
-			if (dist[v.nodo.id] > (v.distancia + acumulador)) {
-				dist[v.nodo.id] = v.distancia + acumulador;
+			int d = v.distancia + acumulador;
+			if (dist[v.nodo.id] > d) {
+				dist[v.nodo.id] = d;
 			}
 		}
 	}
